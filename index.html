@@ -224,42 +224,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>如果没有接触过这个问题，那么对这个问题的答案可能是java参数既有值传递也有引用传递。然而后来有一次，我们经理给我们出的一个考题就考到了这个，毫无意外的答错。然后今天在网上看到有人提了一个这样的问题，想起了这个问题就先记下来吧。。。。</p>
-<hr>
-<p>###值传递和引用传递的含义及特点</p>
-<pre><code>含义：在方法调用时，传递的参数是按值的拷贝传递。
-特点：传递的是值的拷贝，也就是说传递后就互不相关了
-
-
-含义：在方法调用时，传递的参数是按引用进行传递，
-     其实传递的引用的地址，变量所对应的内存空间的地址。
-特点：传递的是值的引用，即传递前和传递后都指向同一个引用
-    （也就是同一个内存空间）
-</code></pre><hr>
-<p><strong>So..talk is cheap,show me the code.</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; testList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        testList.addAll(Lists.newArrayList(<span class="string">"i dont wanna talk"</span>.split(<span class="string">" "</span>)));</div><div class="line">        testParamTrans(testList);</div><div class="line"></div><div class="line">        System.out.println(testList.stream().collect(Collectors.joining(<span class="string">" "</span>)));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testParamTrans</span><span class="params">(List&lt;String&gt; testList)</span> </span>&#123;</div><div class="line">        testList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        testList.addAll(Lists.newArrayList(<span class="string">"talk is cheap show me the code"</span>.split(<span class="string">" "</span>)));</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>上面这段代码试图去改变testList的引用地址，如果参数是引用传递，那么最后打印的内容应该是“talk is cheap show me the code”，但是最后内容是“i dont wanna talk”，说明方法里面改变对象引用地址是不可以的。</p>
-<p>ps.各位可以自己试一下传递基本数据类型参数和改变参数对象的参数值</p>
-<p>&gt;<br>其实运行完例子之后我们就可以得出结论了</p>
-<ul>
-<li>一个方法不能修改一个基本数据类型的参数</li>
-<li>一个方法可以改变一个对象（数组）参数的状态</li>
-<li>一个方法不能让对象参数（数组）引用一个新的对象。</li>
-</ul>
-<hr>
-<p><strong>那java的参数传递为啥是这样？</strong></p>
-<pre><code>先给传递的变量和参数变量命个名，方便理解。
-main(String[] args){paramX; testParamTrans(paramX);}
-testParamTrans(paramY){...}
-</code></pre><hr>
-<p>对于基本数据类型的参数的传递</p>
-<ol>
-<li>把值拷贝一份给参数，即上面代码里面的paramX值拷贝了一份给paramY（其实这个时候就已经注定paramX和paramY缘分已尽了）。</li>
-<li>testParamTrans方法压栈，执行testParamTrans方法，哪怕改变paramY变量的值，对paramX也是毫无影响。</li>
-<li>testParamTrans弹栈，paramY变量不再使用。</li>
-</ol>
-<p>对于对象参数的传递</p>
-<p>其实和基本数据类型的参数的传递方式差不多，只不过传递的是对象的引用内存地址值，然后paramY复制了一份地址值。因此paramY也是指向paramX这个对象的，可以改变这个对象内部的属性；但是paramY改变引用内存地址值，对paramX还是没有没有任何影响的。</p>
-
+              <p>如果没有接触过这个问题，那么对这个问题的答案可能是java参数既有值传递也有引用传递。然而后来有一次，我们经理给我们出的一个考题就考到了这个，毫无意外的答错。然后今天在网上看到有人提了一个这样的问题，想起了这个问题就先记下来吧。。。。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+          
       
     </div>
     
@@ -272,6 +239,10 @@ testParamTrans(paramY){...}
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/2017/03/14/javaParamTransMode/#more">大航海 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
