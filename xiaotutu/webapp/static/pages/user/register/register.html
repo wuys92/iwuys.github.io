@@ -1,0 +1,59 @@
+<div class="register">
+		<table>
+			<tr>
+	        	<th class="text_left" colspan="3">注册信息</th>
+	        </tr>
+	        <tr>
+	        	<td class="text_right"><font style="color:red">*</font> 登录名：</td>
+	            <td class="text_left">
+	            	<input class="text" type="text" size="30" id="account"  placeholder="字母开头，3-20位字母数字组成" />
+	            </td>
+	        </tr>
+	        <tr>
+	        	<td class="text_right"><font style="color:red">*</font> 手机号：</td>
+	            <td class="text_left">
+	            	<input class="text" type="text" size="30" id="mobile" placeholder="可作为登录名"/>
+	            </td>
+	        </tr>
+	        <tr>
+	        	<td class="text_right"><font style="color:red">*</font> 邮箱：</td>
+	            <td class="text_left">
+	            	<input class="text" type="text" size="30" id="mail" placeholder="可用来找回密码"/>
+	            </td>
+	        </tr>
+	        <tr>
+	        	<td class="text_right"><font style="color:red">*</font> 密码：</td>
+	            <td class="text_left" >
+	            	<input type="password" class="text" size="30" id="password" placeholder="6-20位大小写英文数字或符号组成" />
+	            </td>
+	        </tr>
+	        <tr>
+	        	<td class="text_right"><font style="color:red">*</font> 确认密码：</td>
+	            <td class="text_left">
+	            	<input type="password" class="text" size="30" class="regist_input" id="rePassword" />
+	            </td>
+	        </tr>
+	        <tr>
+	        	<td class="text_right">验证码：</td>
+                    <td class="text_left">
+                    	<input type="text" id="checkcode" class="regist_input" maxlength="5" />
+                    	<img id="checkcodeimg" src="repwd.images" data-bind="click:reload_checkcode_img" />
+                    	<a href="#" class="xieyi" data-bind="text:'看不清，换一张',click:reload_checkcode_img"></a>
+                </td>
+            </tr>
+	        <tr>
+	        	<td class="text_right" width="150"></td>
+	            <td class="text_left" >
+	            	<input type="checkbox" id="protocol" checked="checked" />
+	            	<a href="#" onclick="window.open('static/pages/user/register/protocol.html','','height=500,width=700,scrollbars=1');" class="xieyi">已阅读并接受《杠宝玩具注册协议》</a>
+	            </td>
+	        </tr>
+	        <tr>
+	        	<td class="text_right" width="150"></td>
+	            <td class="text_left" >
+		            <input class="button02" type="button" id="register" value="注册" />
+		            <label id="checkMsg" style="color:red;text-align:left;font-size:18;display:none; "></label>
+	            </td>
+	        </tr>
+	    </table>
+</div>

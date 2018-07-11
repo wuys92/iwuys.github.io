@@ -1,0 +1,107 @@
+/*   我的购物车  */
+.mycar {
+	width: 976px;
+	margin: 0 auto;
+	border: solid 2px #ffdff2;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.mycar table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.mycar table th {
+	height: 36px;
+	line-height: 36px;
+	text-align: left;
+	padding-left: 20px;
+	background-color: #f7e6f0;
+	font-size: 14px;
+	border-bottom: solid 1px #ffe4f3;
+}
+
+.mycar table tr td {
+	text-align: center;
+	border-bottom: solid 1px #e5e5e5;
+	padding: 10px 0px;
+	line-height: 26px;
+}
+
+.mycar table tr .mycar_img {
+	position: relative;
+	text-align: left;
+	padding-left: 40px;
+}
+
+.mycar table tr .mycar_img img {
+	border: solid 1px #ddd;
+}
+
+.mycar table tr td font {
+	color: #e30d15;
+}
+
+.mycar table tr td p {
+	position: absolute;
+	top: 20px;
+	left: 110px;
+}
+
+.mycar table tr td .num01 {
+	width: 16px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	border: solid 1px #dcdcdc;
+	border-right: none;
+	display: block;
+	float: left;
+	margin-left: 20px;
+}
+
+.mycar table tr td .num02 {
+	width: 16px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	border: solid 1px #dcdcdc;
+	border-left: none;
+	display: block;
+	float: left;
+}
+
+.mycar table tr td input {
+	height: 26px;
+	line-height: 26px;
+	border: solid 1px #dcdcdc;
+	float: left;
+}
+
+.redfont{
+	color: red;
+}
+.noAnyMoreToys{
+	
+	text-decoration:line-through
+}
+
+.Spinner{display:block;overflow:hidden;width:90px;margin:0 auto auto;}
+
+.Spinner .amount{width:36px;padding:4px 5px;line-height:17px;border-width:1px 0;border-style:solid;border-color:#d9d9d9;float:left;text-align:center;color:#565656;outline:0;}
+.Spinner a{display:inline-block;width:25px;height:25px;border:1px solid #d9d9d9;background-color:#f7f7f7;float:left;cursor:pointer;outline:0;}
+.Spinner a i{font-style:normal;background:url(/toyRenting/static/images/BuynBtn.png) no-repeat;display:block;width:9px;height:9px;margin:8px;text-indent:999999%;overflow:hidden;}
+.Spinner .Decrease i{background-position:-9px -9px;}
+.Spinner .Increase i{background-position:-9px -0px;}
+.Spinner .DisDe i{background-position:-0px -9px;}
+.Spinner .DisIn i{background-position:-0px -0px;}
+
+.submit-btn b {
+    display: inline-block;
+    position: relative;
+    width: 95px;
+    height: 51px;
+    overflow: hidden;
+    background: url(/toyRenting/static/images/cart-submit-btn-new.png) 0 0 no-repeat;
+}

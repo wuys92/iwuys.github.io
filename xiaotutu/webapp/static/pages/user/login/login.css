@@ -1,0 +1,78 @@
+.loginbox {
+	height: 311px;
+	background: url(/toyRenting/static/images/loginbox_bg.png) no-repeat
+		left center;
+	padding-top: 6px;
+	margin-bottom: 80px;
+	margin-top: 50px;
+}
+
+.loginbox .login_img {
+	float: left;
+	width: 562px;
+	padding-left: 6px;
+}
+
+.loginbox .login_info {
+	float: left;
+	padding-left: 40px;
+	padding-top: 30px;
+}
+
+.loginbox .login_info p {
+	line-height: 35px;
+	font-size: 14px;
+}
+
+.loginbox .login_info .float_left {
+	height: 35px;
+	line-height: 35px;
+	_padding-top: 5px;
+}
+
+.loginbox .login_info .text {
+	width: 304px;
+	padding-left: 3px;
+	height: 35px;
+	line-height: 35px;
+	border: solid 1px #bcbcbc;
+}
+
+.loginbox .login_info span {
+	font-size: 12px;
+}
+
+.loginbox .login_info a {
+	font-size: 12px;
+	margin-left: 160px;
+}
+
+.loginbox .login_info .btn_login {
+	float: left;
+	width: 203px;
+	height: 42px;
+	line-height: 40px;
+	border: none;
+	background: url(/toyRenting/static/images/button08.png) no-repeat left
+		center;
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+	font-family: "微软雅黑";
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.loginbox .login_info .btn_register {
+	float: left;
+	margin-left: 10px;
+	display: block;
+	width: 91px;
+	height: 42px;
+	line-height: 40px;
+	text-align: center;
+	background: url(/toyRenting/static/images/button09.png) no-repeat left
+		center;
+	color: #fff;
+	margin-top: 20px;
+}

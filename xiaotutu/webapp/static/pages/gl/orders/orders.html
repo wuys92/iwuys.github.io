@@ -1,0 +1,100 @@
+<div class="orders">
+      <ul id="tagsm">
+        <li data-bind="css:{selectTagm : selectTagm()==2}">
+        	<a data-bind="click:sendToy" href="">待发货的玩具</a> 
+        </li>
+        <li data-bind="css:{selectTagm : selectTagm()==3}">
+        	<a data-bind="click:getBackingToy"  href="">待确认回收的玩具</a>
+		</li>
+        <li data-bind="css:{selectTagm : selectTagm()==4}">
+			<a data-bind="click:getDepositingToy"  href="">待退押金的玩具</a> 
+		</li>
+      </ul>
+      <div id="tagContentm">
+        <div class="leaseContentm" data-bind="css:{selectTagm : selectTagm()==2}">
+        	<table>
+        		<thead>
+            	<tr>
+            		<th>玩具单号</th>
+            		<th>用户账号</th>
+                	<th>玩具名称</th>
+                	<th>租赁天数</th>
+                    <th>请求时间</th>
+                    <th>订单状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:pageInfo.subOrders">
+                	<tr>
+	                	<td data-bind = "text : subOrder.subOrderNo"></td>
+	                	<td data-bind = "text : subOrder.userAccount"></td>
+	                	<td data-bind = "text : subOrder.toyName"></td>
+	                	<td data-bind = "text : subOrder.dayAmount+'天'"></td>
+			            <td data-bind = "text : getTime(subOrder.updateTime)"></td>
+			             <td data-bind = "text : getState(subOrder.subOrderState)"></td>
+			            <td>
+			            	<a href="" data-bind="text:'确认发货',click:expressToy" style="color:#fed030;text-decoration:underline;"></a>
+			            </td>
+		            </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="leaseContentm" data-bind="css:{selectTagm : selectTagm()==3}">
+        	<table>
+        		<thead>
+            	<tr>
+            		<th>玩具单号</th>
+            		<th>用户账号</th>
+                	<th>玩具名称</th>
+                	<th>租赁天数</th>
+                    <th>请求时间</th>
+                    <th>订单状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:pageInfo.subOrders">
+                	<tr>
+	               		<td data-bind = "text : subOrder.subOrderNo"></td>
+	                	<td data-bind = "text : subOrder.userAccount"></td>
+	                	<td data-bind = "text : subOrder.toyName"></td>
+	                	<td data-bind = "text : subOrder.dayAmount+'天'"></td>
+			            <td data-bind = "text : getTime(subOrder.updateTime)"></td>
+			             <td data-bind = "text : getState(subOrder.subOrderState)"></td>
+			            <td>
+			            	<a href="" data-bind="text:'确认回收玩具',click:returnedToy" style="color:	#fed030;text-decoration:underline;"></a>
+			            </td>
+		            </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="leaseContentm" data-bind="css:{selectTagm : selectTagm()==4}">
+        	<table>
+        		<thead>
+            	<tr>
+            		<th>玩具单号</th>
+            		<th>用户账号</th>
+                	<th>玩具名称</th>
+                	<th>租赁天数</th>
+                    <th>押金</th>
+                    <th>订单状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:pageInfo.subOrders">
+                	<tr>
+	                	<td data-bind = "text : subOrder.subOrderNo"></td>
+	                	<td data-bind = "text : subOrder.userAccount"></td>
+	                	<td data-bind = "text : subOrder.toyName"></td>
+	                	<td data-bind = "text : subOrder.dayAmount+'天'"></td>
+			            <td data-bind = "text : '￥'+subOrder.deposit"></td>
+			            <td data-bind = "text : getState(subOrder.subOrderState)"></td>
+			            <td>
+			            	<a href="" data-bind="text:'退还押金',click:backDeposit" style="color:	#fed030;text-decoration:underline;"></a>
+			            </td>
+		            </tr>
+              </tbody>
+            </table>
+        </div> 
+        <div id="Pagination" class="pagination" style="position:absolute;right:0;bottom:0;"></div>       
+      </div>
+</div>

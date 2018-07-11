@@ -1,0 +1,265 @@
+@charset "utf-8";
+*{padding:0px; margin:0px;}
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,Passlogin,table,td,img,div,p{margin:0;padding:0;border:0;}
+ul,li,dl,ul,ol{list-style-type:none;}
+body{font:12px "",Lucida Grande, Verdana, Lucida, Arial, Helvetica, sans-serif; color:#333333; text-align:left; background-color:#fff;}
+.cls{clear:both; font-size:0; height:0; line-height:0;}
+img{border:none;}
+a{color:#333333; text-decoration:none;}
+a:hover{text-decoration:none;}
+ul{	list-style:none;}
+input,select,button{font:12px Verdana,Arial,Tahoma;	vertical-align:middle; padding:0;}
+div{ overflow:hidden;}
+.text_right{ text-align:right;}
+.text_left{ text-align:left;}
+.text_center{ text-align:center;}
+.color666{ color:#666;}
+.w980{ width:980px; margin:0 auto;}
+
+/*  购物车    */
+.minicar{ float:right; width:190px; height:42px; line-height:42px; background:#d9017e url(../images/minicar_bg.png) no-repeat 5px center; padding-left:40px; padding-right:5px; color:#fff; }
+/* .minicar span{ float:left;} */
+.minicar a{ color:#fff;}
+.minicar .to_pay{ display:inline-block; width:64px; height:36px; line-height:36px; text-align:center; color:#9c2066; font-size:14px; background:url(../images/go_account_bg.png) no-repeat; float:right; margin-top:3px;}
+
+/*   联系我们  */
+.contact_us .title{ height:36px; line-height:36px; background-color:#fff2f9; border:solid 2px #ffdff1; font-size:16px; color:#da017e; text-align:center; font-weight:bold;}
+.contact_us ul { overflow:hidden; padding:20px 0px;}
+.contact_us ul li{ width:449px; float:left; padding:20px; border-right:solid 1px #f0e8ec;margin:20px 0px;}
+.contact_us ul .no_bor{ border:none;}
+.contact_us ul li .shop_img{ float:left;}
+.contact_us ul li .shop_info{ float:left; padding-left:20px; padding-top:10px;  }
+.contact_us ul li .shop_info p{ height:40px; line-height:40px; padding-left:40px;}
+.contact_us ul li .shop_info .shop_address{ background:url(../images/address_bg.png) no-repeat left center;}
+.contact_us ul li .shop_info .shop_phone{ background:url(../images/phone_bg.png) no-repeat left center; font-size:14px; color:#da017e; font-weight:bold;}
+.contact_us ul li .shop_info .shop_mail{ background:url(../images/maill_bg.png) no-repeat left center;}
+
+/*   会员中心   租赁记录  */
+.members_lease{ width:976px; border:solid 2px #efefef; margin:0 auto; margin-bottom:20px; }
+
+/*   弹出框  */
+.mydiv {background-color: #fff; border: 5px solid #ccc; line-height:30px; font-size:12px; z-index:99; width:400px; height:300px; left:50%;/*FF IE7*/top: 50%;/*FF IE7*/ margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */ margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/ margin-top:0px; position:fixed!important;/*FF IE7*/ position:absolute;/*IE6*/
+_top:expression(eval(document.compatMode &&document.compatMode=='CSS1Compat') ?documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/ document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/}
+.bg {background-color: #ccc; width: 100%; height: 100%; left:0; top:0;/*FF IE7*/ filter:alpha(opacity=50);/*IE*/ opacity:0.5;/*FF*/ z-index:1; position:fixed!important;/*FF IE7*/ position:absolute;/*IE6*/ _top:      expression(eval(document.compatMode &&document.compatMode=='CSS1Compat') ?documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/ document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/}
+.mydiv  p{ padding-left:10px;}
+.title{ height:40px; line-height:40px; background-color:#efefef;font-size:14px; font-weight:bold;}
+.mydiv .btn{  padding:10px 0px 0px 40px;}
+.mydiv .btn .yes{ display:inline-block; float:left; height:30px; line-height:30px; padding:0px 10px; color:#fff; font-weight:bold; font-size:14px; background-color:#f3058e;}
+.mydiv .btn .no{ display:inline-block; float:left;  height:30px; line-height:30px; padding:0px 10px; font-weight:bold; font-size:14px;   background-color:#efefef; margin-left:10px;}
+.btn_close{ position:absolute; top:0px; right:10px;}
+u
+/*   支付成功  */
+.pay_success{ width:900px; margin:0 auto; text-align:center; padding:40px; min-height:400px;}
+.pay_success .success_title{ text-align: center;height:55px; line-height:55px; font-size:28px; background:url(../images/button05.png) no-repeat scroll 105px 140px center; }
+.pay_success .success_title font{ color:#ff2f02;}
+.pay_success .success_title span{ color:#ff2f02;}
+.pay_success .successinfo{ text-align:center; line-height:30px; font-size:16px; margin-top:30px;}
+.pay_success .btn05{ width:190px; height:52px; line-height:52px; display:inline-block; text-align:center; font-size:16px; color:#e8e4ff; background:url(../images/button06.png) no-repeat; margin:30px 10px; }
+
+/*------新加放大图效果------*/
+
+div.zoomdiv_bg {
+z-index                 : 99;
+position                : absolute;
+top:0px;
+left:0px;
+width                   : 200px;
+height                  : 200px;
+display:none;
+text-align: center;
+overflow: hidden;
+background: url( http://i1.quwan.com/themes/default/imgs/global/loading.gif) no-repeat center center;
+background-color: white;
+}
+div.zoomdiv {
+z-index                 : 100;
+position                : absolute;
+top:0px;
+left:0px;
+width                   : 200px;
+height                  : 200px;
+display:none;
+text-align: center;
+overflow: hidden; border:1px solid #ccc;
+}
+
+div.jqZoomPup {
+z-index                 : 100;
+visibility              : hidden;
+position                : absolute;
+top:0px;
+left:0px;
+width                   : 50px;
+height                  : 50px; 
+border:1px solid #fed887;
+background:url(../../../../../i1.quwan.com/themes/default/imgs/global/mag_bg.png) no-repeat 0 0 ; 
+
+cursor:crosshair;
+}
+* html div.jqZoomPup  { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="http://i1.quwan.com/themes/default/imgs/global/mag_bg.png"); background:none; }
+
+body {color:#666666; font-size:12px ;}
+ul,ol,dl,dt,dd { list-style-type:none; }
+img{ border:0;}
+.tc{ text-align:center;}
+.fl{ float:left;}
+.fr{ float:right;}
+.di{ display:inline;}
+.db{ display:block;}
+.di{ display:inline;}
+.ofh { overflow:hidden }
+#contain{ width:960px; margin:0 auto;}
+#pic_f1{ margin-top:15px;}
+.h35{ height:35px;}
+.w728{ width:728px;}
+.w193{ width:193px;}
+.w70{ width:70px;}
+.w65{width:65px;}
+.w725{ width:725px;}
+.jqzoom{cursor:pointer;height:400px; width:400px;}
+.share1{float:left; width:163px; height:21px; margin-left:100px!important; margin-left:50px;border:1px #dadada solid; line-height:19px;}
+.s_sina{ background:url(../../../../../i1.quwan.com/themes/default/imgs/goodsnew/Detail_bg.gif) no-repeat 0px -478px; width:23px; height:21px;cursor: pointer;  }
+.s_renren{ background:url(../../../../../i1.quwan.com/themes/default/imgs/goodsnew/Detail_bg.gif) no-repeat -23px -478px; width:23px; height:21px;cursor: pointer;  }
+.s_qq{ background:url(../../../../../i1.quwan.com/themes/default/imgs/goodsnew/Detail_bg.gif) no-repeat -46px -478px; width:23px; height:21px;cursor: pointer;  }
+.s_qzone{ background:url(../../../../../i1.quwan.com/themes/default/imgs/goodsnew/Detail_bg.gif) no-repeat -69px -478px; width:23px; height:21px;cursor: pointer;  }
+
+
+
+.fl{ float:left;}
+.num_dw{width:15px; height:18px; display:block;background: url(../../../../../i1.quwan.com/themes/default/imgs/flow/bg_new.giff") no-repeat scroll -296px -157px transparent;border: 1px solid #D8D8D8; cursor: pointer;}
+.num_up {width: 15px; height:18px;background: url(../../../../../i1.quwan.com/themes/default/imgs/flow/bg_new.giff") no-repeat scroll -296px -138px transparent; border: 1px solid #D8D8D8;cursor: pointer;}
+.num_input {border: 1px solid #D8D8D8;color: #666666;height: 18px;margin: 0 3px;text-align: center;width: 35px;}
+
+
+/*  公司简介    */
+.company{ width:940px; margin:0 auto; padding:20px; background:url(/toyRenting/static/images/company_box_bg.png) no-repeat center; margin-bottom:30px;}
+.company .company_img{ text-align:center;}
+.company .company_box p{line-height:35px; font-size:14px;}
+.company .company_box p .color_da017e{ color:#da017e;}
+
+
+.euiDialogContainer-overlay { background-color: #eee;opacity: 0.5;}
+
+
+/*20150126 22:04 chenhong*/
+.regist_box_left .button02{
+  background: url("/toyRenting/static/images/button02.png") no-repeat ;
+  border: medium none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "微软雅黑";
+  font-size: 20px;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  width: 168px;
+}
+.button02{
+  background: url("/toyRenting/static/images/button02.png") no-repeat ;
+  border: medium none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "微软雅黑";
+  font-size: 20px;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  width: 168px;
+}
+.xieyi{
+	display:inline-block;
+	float:left;
+	padding-top:15px;}
+.regist_box{
+	padding-bottom:20px;
+}
+.qq_context {
+    list-style: outside none none;
+}
+
+
+/*20150131 ch*/
+.column_ad{margin:0 auto; width:980px;}
+.position{margin:0 auto; width:980px;}
+
+#right_nav img{vertical-align: bottom;}
+.topnav_left .active {
+    background: none repeat scroll 0 0 #da017e;
+}
+.shop_img img{height: 131px;    width: 72px;}
+.products_box ul li.last {
+  border-right: 0 none;
+}
+.products_box ul li.Productsinfo:hover{background-color:#ff2f9}
+.products_box ul li:hover{background-color:#ff2f9}
+
+
+.filter_info li dl dd.more a {
+  background: none repeat scroll 0 0 #da487e;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  display: inline-block;
+  text-align: center;
+  width: 70px;
+  color : #fff;
+}
+
+
+.member_level table tr td.col_01 {
+  border: 1px solid #f0e8ec;
+  font-weight: bold;
+  line-height: 36px;
+  text-align: center;
+  word-wrap: break-word;
+  width: 80px;
+}
+.success_button{ text-align:center; width:100%;}
+.products_box .members_price li.inventory{
+	line-height:40px;
+}
+.imgRight{
+	-webkit-transform:rotate(-8deg);
+	-moz-transform:rotate(-8deg);
+	-o-transform:rotate(-8deg);
+	transform:rotate(-8deg);
+
+}
+.imgLeft{
+	-webkit-transform:rotate(8deg);
+	-moz-transform:rotate(8deg);
+	-o-transform:rotate(8deg);
+	transform:rotate(8deg);
+
+}
+.phoneImgRight{
+	-webkit-transform:rotate(-18deg);
+	-moz-transform:rotate(-18deg);
+	-o-transform:rotate(-18deg);
+	transform:rotate(-18deg);
+
+}
+.phoneImgLeft{
+	-webkit-transform:rotate(18deg);
+	-moz-transform:rotate(18deg);
+	-o-transform:rotate(18deg);
+	transform:rotate(18deg);
+
+}
+.search_word li a:active{
+    color: #e4393c;text-decoration: underline;
+}
+
+.search_word li a:visited{
+    color: #e4393c;text-decoration: underline;
+}
+.search_word li a:hover{
+    color: #e4393c;text-decoration: underline;
+}
+.welcome_left a:hover,.welcome_right a:hover{
+    color: #e4393c;text-decoration: underline;
+}
+p.phone_number {
+line-height: 16px;
+}

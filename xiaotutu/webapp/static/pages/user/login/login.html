@@ -1,0 +1,22 @@
+<div class="loginbox w980">
+	<div class="login_img">
+		<img src="/toyRenting/static/images/login_img.png" />
+	</div>
+	<div class="login_info">
+		<p>登录账号</p>
+		<p>
+			<input class="text" type="text" name="username" id="username" />
+		</p>
+		<p>密码</p>
+		<p>
+			<input type="password" id="password" class="text" />
+		</p>
+		<p>
+			<a href="javascript:loadpage('/user/repwd');" >忘记密码？</a>
+		</p>
+		<p>
+			<input class="btn_login" type="submit" data-bind="value:'登录',click:login" /> 
+			<a class="btn_register" href="javascript:loadpage('/user/register');">免费注册</a>
+		</p>
+	</div>
+</div>

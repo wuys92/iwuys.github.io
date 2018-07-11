@@ -1,0 +1,75 @@
+<table>
+	<tbody>
+		<tr>
+	      	<td class="text_right" width="112">用户名：</td>
+	        <td class="text_left" width="230">
+	        	<input class="text" disabled="disabled" size="30" type="text" data-bind="attr{value:userInfo().account}"/>
+	        </td>
+	    </tr>
+	    <tr>
+	      	<td class="text_right" width="112">宝贝姓名：</td>
+	        <td class="text_left" width="230">
+	        	<input class="text" id="childName" size="30" type="text" data-bind="attr{value:userInfo().babyName}"/>
+	        </td>
+	        <td class="text_left" width="361">
+				<label><input value="1" id="childSex" name="childSex" type="radio" data-bind="attr{checked:userInfo().babySex == 1}"/>男孩</label> 
+				<label><input value="0" id="childSex" name="childSex" type="radio" data-bind="attr{checked:userInfo().babySex == 0}"/>女孩</label>
+	        </td>
+	      </tr>
+	      <!-- <tr>
+	      	<td class="text_right">宝贝生日：</td>
+	        <td class="text_left"><input class="text" size="30" id="childBirth" name="childBirth" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" type="text"></td>           
+	      </tr> -->
+	      <tr>
+	      	<td class="text_right" width="112">家长姓名：</td>
+	        <td class="text_left" width="230">
+	        	<input class="text" id="parentName" size="30" type="text" data-bind="attr{value:userInfo().name}"/>
+	        </td>
+	        <td class="text_left" width="361">
+				<label><input value="1" name="parentsRef" id="parentsRef" type="radio" data-bind="attr{checked:userInfo().parentType == 1}"/>爸爸</label> 
+				<label><input value="2" name="parentsRef" id="parentsRef" type="radio" data-bind="attr{checked:userInfo().parentType == 2}"/>妈妈</label>
+	        </td>
+	      </tr>
+	      <tr>
+	      	<td class="text_right">手机号：</td>
+	        <td class="text_left"><input class="text" id="mobile" size="30" type="text" data-bind="attr{value:userInfo().mobile}"/></td>           
+	      </tr>
+	      <tr>
+	      	<td class="text_right">邮箱：</td>
+	        <td class="text_left"><input class="text" id="email" size="30" type="text" data-bind="attr{value:userInfo().mail}"/></td>           
+	      </tr>
+       	  <tr>
+	      	<td class="text_right">家庭地址：</td>
+	        <td class="text_left">
+		         <select id="selCity" onchange="pChange()" data-bind="  
+                     options: selCitys,
+                     optionsText: 'area',
+                     optionsValue: 'areaCode',
+                     optionsCaption: '选择省份',
+                     value : userInfo().adressProvince"></select>
+                 <select id="selCityChild" onchange="cChange()" data-bind="  
+                     options: selCityChilds,
+                     optionsText: 'area',
+                     optionsValue: 'areaCode',
+                     optionsCaption: '选择市',
+                     value : userInfo().adressCity"></select>
+                <select id="selCityWebsite" data-bind="  
+                     options: selCityWebsites,
+                     optionsText: 'area',
+                     optionsValue: 'areaCode',
+                     optionsCaption: '选择区县',
+                     value : userInfo().adressCounty"></select>
+	        </td>   
+	      </tr>
+	      <tr>
+	      	<td class="text_right">详细地址：</td>
+	        <td class="text_left"><input class="text" id="adressInfo" size="30" type="text" data-bind="attr{value:userInfo().adressInfo}"/></td>           
+	      </tr>
+	      <tr>
+        	<td class="text_right"></td>
+            <td class="text_left">
+	            <input class="button03" data-bind="click:submit,attr{value:'提交'}" type="button">
+            </td>           
+        </tr>      	
+    </tbody>
+ </table>

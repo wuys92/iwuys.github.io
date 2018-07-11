@@ -1,0 +1,38 @@
+<div class="mycar">
+	<table>
+        <th colspan="9">我的购物车</th>
+        <tr>
+            <td width="250">玩具</td>
+            <td>库存</td>
+            <td>类型</td>
+            <td>大小</td>
+            <td>单价</td>
+            <td>租赁天数</td>
+            <td>租赁总价</td>
+            <td>押金</td>
+            <td>操作</td>
+	    </tr>
+        <tbody data-bind="foreach:toyCarts">
+	        <tr data-bind = "css:{noAnyMoreToys : toy.amount<1}">
+	            <td data-bind = "text : toy.name"></td>
+	            <td data-bind = "text : toy.amount<1?'暂时缺货':toy.amount,css:{redfont:toy.amount<1}"></td>
+	            <td data-bind = "text : toy.categoryName"></td>
+	            <td data-bind = "text : getToySize(toy.size)"></td>
+	            <td data-bind = "text : '￥'+toy.price+'/天'"></td>
+	            <td><div class="Spinner" data-bind = "spinner : $data"></div></td>
+	            <td data-bind = "text : '￥'+toy.price* dayAmount()"></td>
+	            <td data-bind = "text : '￥'+toy.deposit"></td>
+	            <td><a href="" data-bind="text:'移除',click:removeOne" style="color:	#fed030;text-decoration:underline;"></a></td>
+	        </tr>
+    	</tbody>
+    </table>
+    <div class="submitToys" style="float: right;" height="51px">
+   		<div style="display: inline-block;margin-right: 10px;text-align: right;">
+   			<div>已选择<span class="redfont" data-bind="text:toyCarts().length" ></span>种玩具    租赁总价（不含运费）：<span class="redfont" data-bind="text:sumPrice"></span></div>
+   			<div style="margin-top: 10px">押金（玩具退还之后全额返回）：<span data-bind="text:sumDeposit"></span></div>
+   		</div>
+   		<div  style="display: inline-block;">
+   			<a href="javascript:void(0);" data-bind="click:createOrder" class="submit-btn"><b></b></a>
+   		</div>
+	</div>
+</div>

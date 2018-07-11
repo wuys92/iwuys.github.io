@@ -1,0 +1,45 @@
+<div>
+	<div class="welcome">
+		<div class="w980 welcome_box">
+			<ul class="welcome_left">
+				<li class="no_bg">您好,欢迎光临 杠宝玩具屋——在线租赁、预约玩具，享受玩具一站式服务</li>
+			</ul>
+	    	<ul class="welcome_left" id="userNotLoginOp">
+	            <li><a href="javascript:loadpage('/user/login');">用户登录</a></li>
+	            <li><a href="javascript:loadpage('/user/register');">免费注册</a></li>
+	            <li><a href="javascript:loadpage('/user/repwd');">找回密码</a></li>
+			</ul>
+	        <ul class="welcome_right" id="userHasLoginOp" style="display: none">
+	        	<li>您好:<a href="javascript:loadpage('/user/haslogin/index');" id="loginAccount"></a></li>
+				<li><a href="#" data-bind="text:'退出',click:exit"></a></li>
+			</ul>  
+		</div>  
+	</div>
+	<div class="header">
+		<div class="header_boc w980">
+		    	<div class="logo">
+		    		<a href="/toyRenting/index.html">
+		    			<img src="/toyRenting/static/images/logo.png"/>
+		    		</a> 
+		    	</div>
+		        <div class="search_box">
+		        	<div class="search">
+		                 <input class="search_text" id="q" placeholder="请输入关键词搜索" type="text" maxlength="24"/>
+		                 <input  class="search_btn" data-bind="click:searchToy,attr{value:'搜索'}"/>
+		          	</div>
+		            <!-- <ul class="search_word">
+		            	<li>热门搜索：</li>
+			                <li><a style="cursor: pointer;" onclick="parssKey(this);" class="gray">Blue Box 蓝盒 香港</a> </li>
+			                <li><a style="cursor: pointer;" onclick="parssKey(this);" class="gray">车</a> </li>
+			                <li><a style="cursor: pointer;" onclick="parssKey(this);" class="gray">小泰克</a> </li>
+			                <li><a style="cursor: pointer;" onclick="parssKey(this);" class="gray">Classic木制玩具 德国</a> </li>
+		            </ul> -->
+		        </div>
+		        <div class="phone">
+		        	<p> <img src="/toyRenting/static/images/top_phone_bg1.png">客服热线</p>
+		        	<p class="phone_number"><span>010-53647608</span></p>
+		        	<p class="phone_number"><span>010-53362577</span></p>
+		        </div>
+		</div>
+	</div>
+</div>

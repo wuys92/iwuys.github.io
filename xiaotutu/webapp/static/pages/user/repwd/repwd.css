@@ -1,0 +1,100 @@
+.register {
+	width: 916px;
+	border: solid 2px #efefef;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	padding: 20px 30px;
+	margin-top: 20px;
+}
+
+.register table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.register table tr th {
+	font-size: 16px;
+	background: url(/toyRenting/static/images/hr.png) no-repeat 80px center;
+}
+
+.register table tr td {
+	line-height: 24px;
+	padding: 5px 0px;
+}
+
+.register table tr td select {
+	height: 24px;
+	line-height: 24px;
+	padding-left: 10px;
+}
+
+.register table tr td .text {
+	height: 24px;
+	line-height: 24px;
+}
+
+.register table tr td font {
+	color: #e30d15;
+	font-size: 14px;
+}
+
+.register table tr .card a {
+	display: block;
+	float: left;
+	width: 100px;
+	height: 52px;
+	padding-top: 15px;
+	line-height: 33px;
+	text-align: center;
+	background: url(/toyRenting/static/images/card_bg.png) no-repeat;
+	margin-right: 20px;
+	font-weight: bold;
+}
+
+.register table tr .card a font {
+	font-weight: normal;
+	color: #333;
+	font-size: 12px;
+}
+
+a.activeCardClass {
+	color: #e30d15;
+	font-size: 21px
+}
+
+.register table tr .card a:hover {
+	background: url(/toyRenting/static/images/card_hover_bg.png) no-repeat;
+}
+
+.register table tr td .button02 {
+	width: 168px;
+	height: 55px;
+	line-height: 55px;
+	text-align: center;
+	display: inline-block;
+	font-size: 20px;
+	font-family: "微软雅黑";
+	background: url(/toyRenting/static/images/button02.png) no-repeat;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+
+#checkcode {
+	width: 150px;
+	height: 25px;
+	float: left;
+	margin-top: 20px;
+}
+
+#checkcodeimg {
+	height: 50px;
+	float: left;
+	padding-top: 10px;
+	width: 100px;
+	border: 1px;
+}
+
+#contract {
+	float:left;margin-top:8px;
+}

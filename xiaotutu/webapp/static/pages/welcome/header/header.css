@@ -1,0 +1,161 @@
+/*  顶部欢迎   */
+.welcome {
+	height: 35px;
+	line-height: 35px;
+	background-color: #fff2f9;
+}
+
+.welcome_left {
+	float: left;
+}
+
+.welcome_left li {
+	float: left;
+	color: #f00;
+	background: url(/toyRenting/static/images/welcome_li_bg.png) no-repeat right center;
+}
+
+.welcome_left li a {
+	color: #f00;
+	display: inline-block;
+	margin: 0px 15px;
+}
+
+.welcome_left .no_bg {
+	background: none;
+	margin-right: 20px;
+	color: green
+}
+
+.welcome_right {
+	float: right;
+}
+
+.welcome_right li {
+	float: right;
+	padding: 0px 15px;
+	background: url(/toyRenting/static/images/welcome_li_bg.png) no-repeat right center;
+}
+
+.welcome_right .no_bg {
+	background: none;
+}
+
+.welcome_right a {
+	color: #f00;
+}
+
+/*  logo   搜索框    */
+.header_boc .logo {
+	float: left;
+}
+
+.header_boc .logo img, .phone img {
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+	float: left;
+}
+
+.header {
+	background-color: #fff2f9;
+	padding: 15px 0px;
+	padding-bottom: 0;
+}
+
+#head {
+	background-color: #fff2f9;
+}
+
+.city {
+	float: left;
+	height: 35px;
+	line-height: 35px;
+	margin-right: 50px;
+}
+
+.city p {
+	font-size: 14px;
+	height: 35px;
+	line-height: 35px;
+}
+
+.city p a {
+	font-size: 12px;
+	color: #666;
+}
+
+.search_box {
+	float: left;
+	margin-left: 60px;
+	width: 456px;
+	padding-top: 20px;
+}
+
+.search {
+	height: 34px; /*border:solid 1px #af2d77;*/
+}
+
+.search_text {
+	width: 373px;
+	height: 35px;
+	line-height: 30px;
+	border: solid 2px #ee0487;
+	background-color: #fff;
+	padding-left: 5px;
+	color: #666;
+	margin: 0;
+	float: left;
+}
+
+.search_btn {
+	width: 72px;
+	border: 0;
+	height: 34px;
+	line-height: 32px;
+	background-color: #ee0487;
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+	font-family: "微软雅黑";
+	border: none;
+	cursor: pointer;
+	margin: 0;
+	float: left;
+}
+
+.search_word li {
+	float: left;
+	padding-right: 10px;
+	height: 30px;
+	line-height: 30px;
+	color: #666;
+}
+
+.search_word li a {
+	color: #666;
+}
+
+.phone {
+	width: 184px;
+	height: 72px;
+	background: url(/toyRenting/static/images/top_phone_bg.png) no-repeat;
+	float: right;
+	margin-top: 10px;
+	font-size: 16px;
+	color: #fff;
+	font-family: "微软雅黑";
+	line-height: 35px;
+	text-align: center;
+}
+
+.phone .phone_bg {
+	background: url(/toyRenting/static/images/top_phone_bg1.png) no-repeat 10px center;
+}
+
+.phone span {
+	font-size: 16px;
+	color: #fff;
+	font-family: "微软雅黑";
+}

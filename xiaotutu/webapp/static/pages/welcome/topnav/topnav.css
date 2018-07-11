@@ -1,0 +1,83 @@
+.topnav {
+	height: 42px;
+	border-bottom: solid 1px #af2d77;
+	border-top: solid 1px #af2d77;
+	background-color: #f3058e;
+}
+
+.topnav .topnav_left {
+	float: left;
+}
+
+.topnav .topnav_left li {
+	height: 42px;
+	line-height: 42px;
+	float: left;
+	text-align: center;
+}
+
+.topnav .topnav_left li a {
+	font-size: 16px;
+	font-family: "微软雅黑";
+	color: #fff;
+	display: inline-block;
+	padding: 0px 15px;
+}
+
+.topnav .topnav_left li a:hover {
+	text-decoration: none;
+	background-color: #da487e;
+	padding: 0px 15px;
+}
+
+.menu {
+	height: 42px;
+	line-height: 42px;
+}
+
+.menu p a {
+	display: inline-block;
+	color: #fff;
+}
+
+.menu .menu_ct {
+	width: 90px;
+	text-align: center;
+	border: solid 2px #da017e;
+	border-top: none;
+	position: absolute;
+	background-color: #FFFFFF;
+	display: none;
+	z-index: 999;
+}
+
+.menu .menu_ct li {
+	border-bottom: solid 1px #e5e5e5;
+	height: 35px;
+	line-height: 35px;
+	float: none;
+}
+
+.menu .menu_ct li a {
+	color: #333;
+	font-size: 12px;
+	display: block;
+}
+
+.menu .menu_ct li a:hover {
+	background: none;
+	color: #da017e;
+	font-weight: bold;
+}
+
+.active_menu {
+	height: 42px;
+}
+
+.active_menu p a {
+	background-color: #da017e;
+}
+
+.active_menu .menu_ct {
+	display: block;
+}

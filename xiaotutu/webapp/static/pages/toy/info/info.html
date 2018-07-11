@@ -1,0 +1,87 @@
+<div style="margin-top: 10px; margin-bottom: 10px">
+	<div class="products_tetail">
+		<div class="detail_img">
+			<div style="width: 410px; overflow: hidden;">
+				<div class="image">
+					<img data-bind="attr{src:toy().coverImageUrl,alt:toy().name+' '+toy().chineseName}" width="350" height="350" />
+				</div>
+			</div>
+		</div>
+
+		<div class="detail_info">
+			<h2>
+				<span data-bind="text: toy().name"></span> （<span style="color: red;" data-bind="text : getToySize(toy().size)">小</span>）
+			</h2>
+			<p>
+				<span>品牌：</span>
+				<span2 data-bind="text: toy().brandCountryName+' '+toy().brandName+' '+toy().brandChName"></span2>
+			</p>
+			<p>
+				<span>适合年龄：</span>
+				<span2 data-bind="text: getSuitMonthMsg(toy())"></span2>
+			</p>
+			<p>
+				<span>玩具材质：</span>
+				<span2 data-bind="text: toy().material"></span2>
+			</p>
+			<p>
+				<span>库存数量：</span>
+				<span2 data-bind="text: toy().amount"></span2>
+			</p>
+			<p>
+				<span>玩具租价：</span>
+				<span2 data-bind="text: toy().price+'元/天'"></span2>
+				<span style='margin-left: 80px; width: 100px;'>押金(玩具返还后全额退回)：</span>
+				<span2 data-bind="text: toy().deposit+'元'"></span2>
+			</p>
+			<p class="btn">
+				<a href="" data-bind="text:'加入购物车',click:addToCart"></a>
+				<a href="javascript:loadpage('/order/cart');">去购物车结算</a>
+			</p>
+		</div>
+	</div>
+	<!-- 商品详情分析描述 -->
+	<div id="con" class="detail_tab w980">
+		<ul id="tags">
+			<li>
+				<a data-bind="text:'简介',click:selectTag(1),css : {selectTag : selectTag()==1}" href=""></a>
+			</li>
+			<li>
+				<a data-bind="text:'商品评价',click:getComments,css : {selectTag : selectTag()==2}" href=""></a>
+			</li>
+		</ul>
+		<span data-bind="click:selectTag(1)" style="display: none"></span>
+		<div id="tagContent">
+			<div class="tagContent" data-bind="css : {selectTag : selectTag()==1}">
+				<div>
+					<div class="markTitle">玩具特色</div>
+					<ul id="marks" data-bind="foreach : defaultInfos">
+						<li class="mark" data-bind="text : mark"></li>
+					</ul>
+				</div>
+				<div>
+					<div class="markTitle">玩具展示</div>
+					<ul id="marks" data-bind="foreach : defaultPics">
+						<img data-bind="attr{src:picUrl}" />
+					</ul>
+				</div>
+			</div>
+			<div class="tagContent" data-bind="css : {selectTag : selectTag()==2}" >
+				<div class = "comments">
+					<table style = "font: 10px;color: #666666; ">
+						<tbody data-bind="foreach : comments.data">
+							<tr>
+								<td data-bind="text : comment" rowspan="2" style="width: 760px" class="hasBot"></td>
+								<td data-bind="text : userAccount" style="text-align:center;"></td>
+							</tr>
+							<tr>
+								<td data-bind="text : getTime(createTime)" class="hasBot" style="text-align:center;"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="Pagination_Comments" class="pagination" style="position:absolute;right:0;bottom:0;"></div> 
+			</div>
+		</div>
+	</div>
+</div>

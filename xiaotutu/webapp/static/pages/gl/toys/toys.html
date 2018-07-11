@@ -1,0 +1,189 @@
+<div class="orders">
+      <div id="tagsm">
+	      <table width="100%" border="0" >
+		          <tr>
+		            <td width="7%" height="30">品牌:</td>
+		            <td width="14%" >
+		            	<select id="brandId" data-bind="  
+		                     options: toyBrands,
+		                     optionsText: 'chineseName',
+		                     optionsValue: 'id',
+		                     optionsCaption: '不限品牌'">
+		                </select>
+		            </td>
+		            <td width="10%">玩具类型:</td>
+		            <td width="14%" >
+		            	<select id="categoryId" data-bind="  
+		                     options: toyCategorys,
+		                     optionsText: 'name',
+		                     optionsValue: 'id',
+		                     optionsCaption: '不限类型'">
+		                </select>
+		            </td>
+		            <td width="10%">玩具名称:</td>
+		            <td width="15%"><input type="text" id="searchCondition" class="text" /></td>
+		            <td  width="10%">
+		            	<input class="button03" data-bind="click:searchPage,attr{value:'查询'}" type="button" width="70px" height="20px">
+		            </td>
+		            <td  width="10%">
+		            	<input class="button03" data-bind="click:addToy,attr{value:'增加玩具'}" type="button" width="100px" height="20px">
+		            </td>
+		          </tr>
+	      </table>
+      </div>
+      <div style="position:relative;">
+        <div class="toysManger">
+        	<table>
+        		<thead>
+            	<tr>
+            		<th>名称</th>
+            		<th>品牌</th>
+                	<th>类型</th>
+                	<th>浏览次数</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:pageInfo.toys">
+                	<tr>
+	                	<td data-bind = "text : name"></td>
+	                	<td data-bind = "text : brandName+' '+brandChName"></td>
+	                	<td data-bind = "text : categoryName"></td>
+	                	<td data-bind = "text : lookAmount"></td>
+			            <td>
+			            	<a href="" data-bind="text:'编辑',click:editToy" style="color:#fed030;text-decoration:underline;"></a>
+			            	<a href="" data-bind="text:'删除',click:deleteToy" style="color:#fed030;text-decoration:underline;"></a>
+			            </td>
+		            </tr>
+              </tbody>
+            </table>
+        </div>
+        <div id="Pagination_xxxx" class="pagination" style="position:absolute;right:0;bottom:0;"></div>       
+      </div>
+</div>
+<div class="toysInfo" id="toysInfo">
+		<div class="markTitle">玩具详情<a href="" class = "close" data-bind="click:closeOrderDetails">x</a></div>
+		<div style="position:relative;">
+			<div>
+				<table width="100%" border="0" >
+					<tr>
+						<td  width="15%">玩具名称:</td>
+			            <td><input type="text" id="name" class="text" data-bind="attr{value:toyDetail.toy().name}"/></td>
+					</tr>
+					<tr>
+						<td>玩具库存:</td>
+			            <td><input type="text" id="amount" class="text" data-bind="attr{value:toyDetail.toy().amount}"/></td>
+					</tr>
+					 <tr>
+						<td width="15%">玩具每日租价(￥):</td>
+			            <td><input type="text" id="price" class="text" data-bind="attr{value:toyDetail.toy().price}"/></td>
+					</tr>
+		          	<tr>
+			            <td>品牌:</td>
+			            <td>
+			            	<select id="ebrandId" data-bind="  
+			                     options: toyBrands,
+			                     optionsText: 'chineseName',
+			                     optionsValue: 'id',
+			                     optionsCaption: '请选择 ',
+		                     	value : toyDetail.toy().brandId">
+			                </select>
+			            </td>
+		            </tr>
+		            <tr>
+			            <td>玩具类型:</td>
+			            <td >
+			            	<select id="ecategoryId" data-bind="  
+			                     options: toyCategorys,
+			                     optionsText: 'name',
+			                     optionsValue: 'id',
+			                     optionsCaption: '请选择',
+		                     	value : toyDetail.toy().categoryId">
+			                </select>
+			            </td>
+		             </tr>
+		             <tr>
+			            <td>玩具大小:</td>
+			            <td >
+			            	<select id="size">
+			            		<option value="">请选择</option>
+				            	<option value="1" data-bind="attr{selected:toyDetail.toy().size==1}">大</option>
+								<option value="2" data-bind="attr{selected:toyDetail.toy().size==2}">中</option>
+								<option value="3" data-bind="attr{selected:toyDetail.toy().size==3}">小</option>
+			                </select>
+			            </td>
+		             </tr>
+	             </table>
+		       </div>
+		       <div style="position:absolute;right:0;top:10;width: 290;height: 330;" >
+		       		<div class="pic" >
+						<img data-bind="attr:{title : toyDetail.toy().name,src : toyDetail.toy().coverImageUrl}" style="max-height: 160px;" />
+					</div>
+					<div style="">
+						缩略图:<input id="upCoverImg" type="file" size="20" name="upCoverImg">
+					</div>
+		       </div>
+	       </div>
+	       <div style="margin-top: -40px">    
+             <table>
+	             <tr>
+					<td  width="15%">押金(￥):</td>
+		            <td><input type="text" id="deposit" class="text" data-bind="attr{value:toyDetail.toy().deposit}"/></td>
+				</tr>
+				<tr>
+					<td>适合月数:</td>
+		            <td><input type="text" id="suitMonthStart" class="text" data-bind="attr{value:toyDetail.toy().suitMonthStart}"/>--
+		            	<input type="text" id="suitMonthEnd" class="text" data-bind="attr{value:toyDetail.toy().suitMonthEnd}"/></td>
+				</tr>
+				<tr>
+					<td>购买价格:</td>
+		            <td><input type="text" id="buyPrice" class="text" data-bind="attr{value:toyDetail.toy().buyPrice}"/></td>
+				</tr>
+			</table>
+		  </div>	
+		<div style="position:relative;margin-top: -40px">
+			<div>
+				<table>
+					<tr>
+						<td width="15%">玩具材质:</td>
+			            <td><input type="text" id="material" class="text" data-bind="attr{value:toyDetail.toy().material}"/></td>
+					</tr>
+					<tr>
+						<td>玩具重量(KG):</td>
+			            <td><input type="text" id="weight" class="text" data-bind="attr{value:toyDetail.toy().weight}"/></td>
+					</tr>
+		     	</table>
+	     	</div>
+	     	<div style="position:absolute;right:0;top:40;width: 250;height: 50;">
+	     		<input class="button03" data-bind="click:upCoverImg,attr{value:'保存'}" type="button" width="100px" height="50px">
+	     	</div>
+		</div>
+		<div class="markTitle" data-bind="css:{ noDisplay:toyDetail.nowShow() < 1}">
+			玩具特色<a href="" class = "addOne" data-bind="click:addOneToyInfo">增加一条</a>
+		</div>
+		<div>
+			<ul id="marks" data-bind="foreach : toyDetail.toyInfos">
+				<li>
+					<a href="" data-bind="click:deleteInfo" ><li1 class = "deleteInfo"></li1></a>
+					<li2 class="mark" data-bind="text : mark"></li2>
+				</li>
+			</ul>
+		</div>
+		
+		<!-- <div>
+			<ul id="marks" data-bind="foreach : orderDetails">
+				<ul class="toyInfo">
+					<li class="mark" >
+						<span data-bind="text : brandName"></span>
+						<span data-bind="text : toyName"></span>
+						<span data-bind="text : getState(subOrderState)"></span>
+						<span data-bind="text : '￥'+price+'/天'"></span>
+					</li>
+					<li style="text-indent:6em">
+						<span data-bind="text : '押金:￥'+deposit"></span>
+						<span data-bind="text : '租赁天数:'+dayAmount+'天'"></span>
+						<span data-bind="text : '租金:￥'+dayAmount*price"></span>
+					</li>
+				</ul>
+			</ul>
+		</div>  -->
+</div>

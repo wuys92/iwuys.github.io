@@ -1,0 +1,146 @@
+<div id="conm" class="lease_tab">
+      <ul id="tagsm">
+        <li data-bind="css:{selectTagm : selectTagm()==1}">
+        	<a data-bind="click:getWaitSendToy" href="">正在处理中的租赁</a> 
+        </li>
+        <li data-bind="css:{selectTagm : selectTagm()==2}">
+        	<a data-bind="click:getSendingToy"  href="">配送中的玩具</a>
+		</li>
+        <li data-bind="css:{selectTagm : selectTagm()==3}">
+			<a data-bind="click:getUsingToy"  href="">宝贝正在玩的玩具</a> 
+		</li>
+        <li data-bind="css:{selectTagm : selectTagm()==4}">
+        	<a data-bind="click:getToyHis"  href="">租赁历史记录</a> 
+        </li>
+      </ul>
+      <div id="tagContentm">
+        <div class="leaseContentm" data-bind="css:{selectTagm : selectTagm()==1}" >
+        	<table>
+        		<thead>
+            	<tr>
+                	<th>订单号</th>
+                	<th>订单状态</th>
+                    <th>租金</th>
+                    <th>押金</th>
+                    <th>请求时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:pageInfo.orders">
+                	<tr>
+	                	<td data-bind = "text : order.orderNo"></td>
+	                	<td data-bind = "text : getState(order.orderState)"></td>
+			            <td data-bind = "text : '￥'+order.rentMoney"></td>
+			            <td data-bind = "text : '￥'+order.depositMoney"></td>
+			            <td data-bind = "text : getTime(order.createTime)"></td>
+			            <td>
+			            	<a href="" data-bind="text:'查看',click:orderDetails" style="color:	#fed030;text-decoration:underline;"></a>
+			            	<a href="" data-bind="text:'付款',click:payOrder,css:{noDisplay:order.orderState != 0}" style="color:	#fed030;text-decoration:underline;"></a>
+			            	<a href="" data-bind="text:'取消',click:close,css:{noDisplay:order.orderState != 0}" style="color:	#fed030;text-decoration:underline;"></a>
+			            </td>
+		            </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="leaseContentm" data-bind="css:{selectTagm : selectTagm()==2}">
+        	<table>
+        		<thead>
+            	<tr>
+            		<th>玩具单号</th>
+                	<th>玩具名称</th>
+                	<th>租赁天数</th>
+                    <th>请求时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:pageInfo.subOrders">
+               		<tr>
+	                	<td data-bind = "text : subOrder.subOrderNo"></td>
+	                	<td data-bind = "text : subOrder.toyName"></td>
+	                	<td data-bind = "text : subOrder.dayAmount+'天'"></td>
+			            <!-- <td data-bind = "text : '￥'+subOrder.price*subOrder.dayAmount"></td>
+			            <td data-bind = "text : '￥'+subOrder.deposit"></td> -->
+			            <td data-bind = "text : getTime(subOrder.updateTime)"></td>
+			            <td>
+			            	<a href="" data-bind="text:'物流',click:getExpressInfo" style="color:#fed030;text-decoration:underline;"></a>
+			            	<a href="" data-bind="text:'确认收货',click:getToys" style="color:#fed030;text-decoration:underline;"></a>
+			            </td>
+		            </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="leaseContentm" data-bind="css:{selectTagm : selectTagm()==3}">
+        	<table>
+        		<thead>
+            	<tr>
+            		<th>玩具单号</th>
+                	<th>玩具名称</th>
+                	<th>租赁天数</th>
+                    <th>请求时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:pageInfo.subOrders">
+                	<tr>
+	                	<td data-bind = "text : subOrder.subOrderNo"></td>
+	                	<td data-bind = "text : subOrder.toyName"></td>
+	                	<td data-bind = "text : subOrder.dayAmount+'天'"></td>
+			            <!-- <td data-bind = "text : '￥'+subOrder.price*subOrder.dayAmount"></td>
+			            <td data-bind = "text : '￥'+subOrder.deposit"></td> -->
+			            <td data-bind = "text : getTime(subOrder.updateTime)"></td>
+			            <td>
+			            	<a href="" data-bind="text:'退还玩具',click:returnToy" style="color:	#fed030;text-decoration:underline;"></a>
+			            </td>
+		            </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="leaseContentm" data-bind="css:{selectTagm : selectTagm()==4}">
+        	<table>
+        		<thead>
+            	<tr>
+            		<th>玩具单号</th>
+                	<th>玩具名称</th>
+                	<th>租赁天数</th>
+                    <th>租金</th>
+                    <th>押金</th>
+                    <th>订单状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:pageInfo.subOrders">
+                	<tr>
+	                	<td data-bind = "text : subOrder.subOrderNo"></td>
+	                	<td data-bind = "text : subOrder.toyName"></td>
+	                	<td data-bind = "text : subOrder.dayAmount+'天'"></td>
+			            <td data-bind = "text : '￥'+subOrder.price*subOrder.dayAmount"></td>
+			            <td data-bind = "text : '￥'+subOrder.deposit"></td>
+			            <td data-bind = "text : getState(subOrder.subOrderState)"></td>
+			            <td>
+			            	<a href="" data-bind="text:'评论',click:giveComment,css:{noDisplay:subOrder.subOrderState != 6}" style="color:	#fed030;text-decoration:underline;"></a>
+			            </td>
+		            </tr>
+              </tbody>
+            </table>
+        </div> 
+        <div id="Pagination" class="pagination" style="position:absolute;right:0;bottom:0;"></div>       
+      </div>
+</div>
+<div class="toysInfo" id="toysInfo">
+	<div class="markTitle">订单详情<a href="" class = "close" data-bind="click:closeOrderDetails">x</a></div>
+	<ul id="marks" data-bind="foreach : orderDetails">
+		<ul class="toyInfo">
+			<li class="mark" >
+				<span data-bind="text : brandName"></span>
+				<span data-bind="text : toyName"></span>
+				<span data-bind="text : getState(subOrderState)"></span>
+				<span data-bind="text : '￥'+price+'/天'"></span>
+			</li>
+			<li style="text-indent:6em">
+				<span data-bind="text : '押金:￥'+deposit"></span>
+				<span data-bind="text : '租赁天数:'+dayAmount+'天'"></span>
+				<span data-bind="text : '租金:￥'+dayAmount*price"></span>
+			</li>
+		</ul>
+	</ul>
+</div>

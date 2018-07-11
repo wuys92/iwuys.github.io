@@ -1,0 +1,90 @@
+.members_changeinfo {
+	width: 976px;
+	border: solid 2px #efefef;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	height: 410px;
+}
+
+.members_left {
+	width: 200px;
+	overflow: hidden;
+	min-height: 410px;
+	height: 100%;
+	float: left;
+	background: #fdfdfd url(/toyRenting/static/images/members_left_bg.png) repeat-y right;
+}
+
+.members_left li {
+	height: 54px;
+	line-height: 54px;
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom: solid 1px #efefef;
+}
+
+.members_left .title {
+	padding-left: 20px;
+	border-right: solid 2px #efefef;
+}
+
+.members_left li a {
+	font-size: 14px;
+	font-weight: normal;
+	display: block;
+	padding-left: 20px;
+	border-right: solid 2px #efefef;
+}
+
+.members_left li a:hover {
+	color: #c10170;
+	font-weight: bold;
+	border-right: solid 2px #fff;
+	background-color: #fff;
+}
+
+.members_changeinfo table {
+	width: 770px;
+	padding: 20px 0px;
+}
+
+.members_changeinfo table tr td {
+	line-height: 24px;
+	padding: 5px 0px;
+}
+
+.members_changeinfo table tr td .text {
+	height: 24px;
+	line-height: 24px;
+}
+
+.members_changeinfo table tr td select {
+	height: 24px;
+	line-height: 24px;
+	padding-left: 10px;
+}
+
+.members_changeinfo table tr td .button03 {
+	width: 76px;
+	height: 37px;
+	line-height: 37px;
+	text-align: center;
+	background: url(/toyRenting/static/images/button03.png) no-repeat;
+	color: #fff;
+	font-size: 16px;
+	border: none;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.members_changeinfo table tr td .button04 {
+	width: 76px;
+	height: 37px;
+	line-height: 37px;
+	text-align: center;
+	background: url(/toyRenting/static/images/button04.png) no-repeat;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}

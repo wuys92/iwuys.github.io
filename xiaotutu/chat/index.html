@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <link rel="stylesheet" type="text/css" href="font_Icon/iconfont.css">
     <link rel="stylesheet" type="text/css" href="css/chat.css">
 
@@ -12,42 +11,36 @@
 <body>
 
 <div class="chatContainer">
-    <div class="chatBtn">
+    <div class="chatBtn" data-bind="click: openOrCloseChat">
         <i class="iconfont icon-xiaoxi1"></i>
     </div>
-    <div class="chat-message-num">10</div>
+    <div class="chat-message-num" data-bind="text: unReadNum">10</div>
     <div class="chatBox" ref="chatBox">
         <div class="chatBox-head">
             <div class="chatBox-head-one">
+                <div class="chat-return" data-bind="click: initFriends">刷新</div>
                 Conversations
-                <div class="chat-close" style="margin: 10px 10px 0 0;font-size: 14px">关闭</div>
+                <div class="chat-close" style="margin: 10px 10px 0 0;font-size: 14px" data-bind="click: openOrCloseChat">关闭</div>
             </div>
             <div class="chatBox-head-two">
-                <div class="chat-return">返回</div>
+                <div class="chat-return" data-bind="click: returnFriend">返回</div>
                 <div class="chat-people">
                     <div class="ChatInfoHead">
-                        <img src="" alt="头像"/>
+                        <img alt="头像" data-bind="attr:{src: chat.friendInfo().headImage}"/>
                     </div>
-                    <div class="ChatInfoName">这是用户的名字，看看名字到底能有多长</div>
+                    <div class="ChatInfoName" data-bind="text: chat.friendInfo().showName"/>
                 </div>
-                <div class="chat-close">关闭</div>
+                <div class="chat-close" data-bind="click: openOrCloseChat">关闭</div>
             </div>
         </div>
         <div class="chatBox-info">
-            <div class="chatBox-list" ref="chatBoxlist">
-                <div class="chat-list-people">
-                    <div><img src="img/icon01.png" alt="头像"/></div>
+            <div class="chatBox-list" ref="chatBoxlist" data-bind="foreach: viewModel.friends">
+                <div class="chat-list-people" data-bind="click:$parent.toChat">
+                    <div><img data-bind="attr:{src: headImage}" alt="头像"/></div>
                     <div class="chat-name">
-                        <p>自酌一杯酒</p>
+                        <p data-bind="text: showName"></p>
                     </div>
                     <div class="message-num">10</div>
-                </div>
-                <div class="chat-list-people">
-                    <div><img src="img/icon02.png" alt="头像"/></div>
-                    <div class="chat-name">
-                        <p>白兰地</p>
-                    </div>
-                    <div class="message-num">8</div>
                 </div>
             </div>
             <div class="chatBox-kuang" ref="chatBoxkuang">
@@ -127,21 +120,15 @@
                             <li><span class="emoji-picker-image" style="background-position: -9px -120px;"></span></li>
                             <li><span class="emoji-picker-image" style="background-position: -40px -120px;"></span></li>
                             <li><span class="emoji-picker-image" style="background-position: -71px -120px;"></span></li>
-                            <li><span class="emoji-picker-image" style="background-position: -102px -120px;"></span>
-                            </li>
-                            <li><span class="emoji-picker-image" style="background-position: -133px -120px;"></span>
-                            </li>
-                            <li><span class="emoji-picker-image" style="background-position: -164px -120px;"></span>
-                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -120px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -120px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -120px;"></span></li>
                             <li><span class="emoji-picker-image" style="background-position: -9px -154px;"></span></li>
                             <li><span class="emoji-picker-image" style="background-position: -40px -154px;"></span></li>
                             <li><span class="emoji-picker-image" style="background-position: -71px -154px;"></span></li>
-                            <li><span class="emoji-picker-image" style="background-position: -102px -154px;"></span>
-                            </li>
-                            <li><span class="emoji-picker-image" style="background-position: -133px -154px;"></span>
-                            </li>
-                            <li><span class="emoji-picker-image" style="background-position: -164px -154px;"></span>
-                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -154px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -154px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -154px;"></span></li>
                         </ul>
                     </div>
                 </div>
@@ -152,79 +139,94 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
+<script src="js/knockout-3.1.0.js"></script>
 <script>
-    login("wuys", "123456");
+    function viewModel() {
+        var self = this;
+        this.username = "";
+        this.sessionToken =  "";
+        this.unReadNum = ko.observable(7);
+        this.friends = ko.observableArray([]);
+        this.chat = {
+            friendInfo: ko.observable({}),
+            chatContent: ko.observableArray([])
+        };
+        this.toChat = function(obj) {
+            $(".chatBox-head-one").toggle();
+            $(".chatBox-head-two").toggle();
+            $(".chatBox-list").fadeToggle();
+            $(".chatBox-kuang").fadeToggle();
+            self.chat.friendInfo(obj);
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        };
+        this.screenFuc = function() {
+            var topHeight = $(".chatBox-head").innerHeight();//聊天头部高度
+            //屏幕小于768px时候,布局change
+            var winWidth = $(window).innerWidth();
+            if (winWidth <= 768) {
+                var totalHeight = $(window).height(); //页面整体高度
+                $(".chatBox-info").css("height", totalHeight - topHeight);
+                var infoHeight = $(".chatBox-info").innerHeight();//聊天头部以下高度
+                //中间内容高度
+                $(".chatBox-content").css("height", infoHeight - 46);
+                $(".chatBox-content-demo").css("height", infoHeight - 46);
 
-    function screenFuc() {
-        var topHeight = $(".chatBox-head").innerHeight();//聊天头部高度
-        //屏幕小于768px时候,布局change
-        var winWidth = $(window).innerWidth();
-        if (winWidth <= 768) {
-            var totalHeight = $(window).height(); //页面整体高度
-            $(".chatBox-info").css("height", totalHeight - topHeight);
-            var infoHeight = $(".chatBox-info").innerHeight();//聊天头部以下高度
-            //中间内容高度
-            $(".chatBox-content").css("height", infoHeight - 46);
-            $(".chatBox-content-demo").css("height", infoHeight - 46);
-
-            $(".chatBox-list").css("height", totalHeight - topHeight);
-            $(".chatBox-kuang").css("height", totalHeight - topHeight);
-            $(".div-textarea").css("width", winWidth - 106);
-        } else {
-            $(".chatBox-info").css("height", 495);
-            $(".chatBox-content").css("height", 448);
-            $(".chatBox-content-demo").css("height", 448);
-            $(".chatBox-list").css("height", 495);
-            $(".chatBox-kuang").css("height", 495);
-            $(".div-textarea").css("width", 260);
-        }
+                $(".chatBox-list").css("height", totalHeight - topHeight);
+                $(".chatBox-kuang").css("height", totalHeight - topHeight);
+                $(".div-textarea").css("width", winWidth - 106);
+            } else {
+                $(".chatBox-info").css("height", 495);
+                $(".chatBox-content").css("height", 448);
+                $(".chatBox-content-demo").css("height", 448);
+                $(".chatBox-list").css("height", 495);
+                $(".chatBox-kuang").css("height", 495);
+                $(".div-textarea").css("width", 260);
+            }
+        };
+        this.initFriends = function() {
+            if (this.username === '') {
+                alert("您还未登录！");
+                return;
+            }
+            var friends = request("get", "https://api.bmob.cn/1/classes/Friend", "where={\"username\":\""+this.username+"\"}").results;
+            self.friends([]);
+            for (var idx in friends) {
+                var friend = friends[idx];
+                var friendInfo = request("get", "https://api.bmob.cn/1/classes/_User", "where={\"username\":\"" + friend.friendUserName + "\"}").results[0];
+                self.friends.push(friendInfo);
+            }
+        };
+        this.openOrCloseChat = function () {
+            $(".chatBox").toggle(10);
+        };
+        this.returnFriend = function () {
+            $(".chatBox-head-one").toggle(1);
+            $(".chatBox-head-two").toggle(1);
+            $(".chatBox-list").fadeToggle(1);
+            $(".chatBox-kuang").fadeToggle(1);
+        };
     }
+
+    var viewModel = new viewModel();
 
     function login(username, password) {
         var success = function(res) {
+            viewModel.username =  res.username;
+            viewModel.sessionToken =  res.sessionToken;
             $.cookie('username', res.username, { expires: 7 });
             $.cookie('sessionToken', res.sessionToken, { expires: 7 });
-            screenFuc();
-            initFriends();
-
+            viewModel.screenFuc();
+            viewModel.initFriends();
         };
         request('get', 'https://api.bmob.cn/1/login', "username="+username+"&password="+password, success);
     }
 
-    function initFriends() {
-        var localUser = $.cookie('username');
-        if (localUser == '') {
-            alert("您还未登录！");
-            return;
-        }
-        var success = function(res) {
-            var results = res.results;
-            var chatList = $(".chatBox-list");
-            for (var idx in results) {
-                addFriendDiv(results[idx], chatList);
-            }
-        };
-        request("get", "https://api.bmob.cn/1/classes/Friend", "where={\"username\":\""+localUser+"\"}", success);
-    }
-
-    function addFriendDiv(result, chatList) {
-        var friendUserName = result.friendUserName;
-        var success = function(data) {
-            if (data === undefined || data.results.length == 0) {
-                return;
-            }
-            var friend = data.results[0];
-            var div = "<div class=\"chat-list-people\">" +
-                "<div><img src=\""+ friend.headImage +"\" alt=\"头像\"/></div>" +
-                "<div class=\"chat-name\">" +
-                "<p>"+ friend.showName +"</p></div>" +
-                "<div class=\"message-num\">10</div></div>";
-            chatList.append(div);
-        };
-        request("get", "https://api.bmob.cn/1/classes/_User", "where={\"username\":\""+friendUserName+"\"}", success);
-    }
-
     function request(type, url, data, success, error) {
+        var res = null;
+        var async = success !== undefined;
         $.ajax({
             headers: {
                 'X-Bmob-Application-Id': "7611b82dc63273c3e5df0eb8e67848d4",
@@ -234,7 +236,9 @@
             type : type,
             url: url,
             data: data,
+            async: async,
             success: function (result) {
+                res = result;
                 //数据成功返回时执行次回调函数
                 if (success != null) {
                     success(result);
@@ -245,63 +249,13 @@
                     error(err);
                 }
             }
-        })
+        });
+        return res;
     }
 
     (window.onresize = function () {
-        screenFuc();
+        viewModel.screenFuc();
     })();
-
-    //未读信息数量为空时
-    var totalNum = $(".chat-message-num").html();
-    if (totalNum == "") {
-        $(".chat-message-num").css("padding", 0);
-    }
-    $(".message-num").each(function () {
-        var wdNum = $(this).html();
-        if (wdNum == "") {
-            $(this).css("padding", 0);
-        }
-    });
-
-    //打开/关闭聊天框
-    $(".chatBtn").click(function () {
-        $(".chatBox").toggle(10);
-    })
-    $(".chat-close").click(function () {
-        $(".chatBox").toggle(10);
-    })
-
-    //进聊天页面
-    $(".chat-list-people").each(function () {
-        $(this).click(toChat);
-    });
-
-    function toChat() {
-        $(".chatBox-head-one").toggle();
-        $(".chatBox-head-two").toggle();
-        $(".chatBox-list").fadeToggle();
-        $(".chatBox-kuang").fadeToggle();
-
-        //传名字
-        $(".ChatInfoName").text($(this).children(".chat-name").children("p").eq(0).html());
-
-        //传头像
-        $(".ChatInfoHead>img").attr("src", $(this).children().eq(0).children("img").attr("src"));
-
-        //聊天框默认最底部
-        $(document).ready(function () {
-            $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
-        });
-    }
-
-    //返回列表
-    $(".chat-return").click(function () {
-        $(".chatBox-head-one").toggle(1);
-        $(".chatBox-head-two").toggle(1);
-        $(".chatBox-list").fadeToggle(1);
-        $(".chatBox-kuang").fadeToggle(1);
-    });
 
     //      发送信息
     $("#chat-fasong").click(function () {
@@ -368,6 +322,8 @@
         reader.readAsDataURL(pic.files[0]);
 
     }*/
+    login("wuys", "123456");
+    ko.applyBindings(viewModel);
 </script>
 </body>
 </html>
