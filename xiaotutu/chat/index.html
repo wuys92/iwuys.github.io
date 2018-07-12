@@ -45,42 +45,20 @@
             </div>
             <div class="chatBox-kuang" ref="chatBoxkuang">
                 <div class="chatBox-content">
-                    <div class="chatBox-content-demo" id="chatBox-content-demo">
-
+                    <div class="chatBox-content-demo" id="chatBox-content-demo" data-bind="foreach: chat.chatContent">
                         <div class="clearfloat">
                             <div class="author-name">
-                                <small class="chat-date">2017-12-02 14:26:58</small>
+                                <small class="chat-date" data-bind="text: time"></small>
                             </div>
-                            <div class="left">
-                                <div class="chat-avatars"><img src="img/icon01.png" alt="头像"/></div>
-                                <div class="chat-message">
-                                    给你看张图
-                                </div>
+                            <div class="left" data-bind="style:{display: position=='left'?'inline':'none'}">
+                                <div class="chat-avatars"><img data-bind="attr:{src: headImg}" alt="头像"/></div>
+                                <div class="chat-message" data-bind="text: content"></div>
                             </div>
-                        </div>
-
-                        <div class="clearfloat">
-                            <div class="author-name">
-                                <small class="chat-date">2017-12-02 14:26:58</small>
-                            </div>
-                            <div class="left">
-                                <div class="chat-avatars"><img src="img/icon01.png" alt="头像"/></div>
-                                <div class="chat-message">
-                                    <img src="img/1.png" alt="">
-                                </div>
+                            <div class="right" data-bind="style:{display: position=='right'?'inline':'none'}">
+                                <div class="chat-message" data-bind="text: content"></div>
+                                <div class="chat-avatars"><img data-bind="attr:{src: headImg}" alt="头像"/></div>
                             </div>
                         </div>
-
-                        <div class="clearfloat">
-                            <div class="author-name">
-                                <small class="chat-date">2017-12-02 14:26:58</small>
-                            </div>
-                            <div class="right">
-                                <div class="chat-message">嗯，适合做壁纸</div>
-                                <div class="chat-avatars"><img src="img/icon02.png" alt="头像"/></div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 <div class="chatBox-send">
@@ -94,7 +72,7 @@
                                    name="file" id="inputImage" class="hidden">
                             <i class="iconfont icon-tuxiang"></i>
                         </label>-->
-                        <button id="chat-fasong" class="btn-default-styles"><i class="iconfont icon-fasong"></i>
+                        <button id="chat-fasong" class="btn-default-styles" data-bind="click: fasong"><i class="iconfont icon-fasong"></i>
                         </button>
                     </div>
                     <div class="biaoqing-photo">
@@ -145,6 +123,7 @@
         var self = this;
         this.username = "";
         this.sessionToken =  "";
+        this.currentUser = ko.observable({});
         this.unReadNum = ko.observable(7);
         this.friends = ko.observableArray([]);
         this.chat = {
@@ -157,6 +136,30 @@
             $(".chatBox-list").fadeToggle();
             $(".chatBox-kuang").fadeToggle();
             self.chat.friendInfo(obj);
+            self.getChatContent();
+        };
+        this.getChatLine = function(cht) {
+            var chatLine = {};
+            chatLine.time = cht.createdAt;
+            chatLine.position = 'right';
+            chatLine.headImg = self.currentUser().headImage;
+            if (cht.from != self.username) {
+                chatLine.position = 'left';
+                chatLine.headImg = self.chat.friendInfo().headImage;
+            }
+            chatLine.content = cht.content;
+            return chatLine;
+        };
+        this.getChatContent = function () {
+            var chatKey = [];
+            chatKey.push(self.username + "-" + self.chat.friendInfo().username);
+            chatKey.push(self.chat.friendInfo().username + "-" + self.username);
+            var originChatContent = request("get", "https://api.bmob.cn/1/classes/Chat", "where={\"key\":{\"$in\":"+ JSON.stringify(chatKey)+"}}&order=createdAt").results;
+            var chatContent = [];
+            for (var idx in originChatContent) {
+                chatContent.push(self.getChatLine(originChatContent[idx]));
+            }
+            self.chat.chatContent(chatContent);
             //聊天框默认最底部
             $(document).ready(function () {
                 $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
@@ -208,6 +211,31 @@
             $(".chatBox-list").fadeToggle(1);
             $(".chatBox-kuang").fadeToggle(1);
         };
+        this.fasong = function () {
+            var textContent = $(".div-textarea").html().replace(/[\n\r]/g, '<br>')
+            if (textContent != "") {
+                var data = {};
+                data.from = self.username;
+                data.to = self.chat.friendInfo().username;
+                data.content = textContent;
+                data.type = "1";
+                data.isRead = false;
+                data.key = data.from + "-" + data.to;
+                var res = request("POST", "https://api.bmob.cn/1/classes/Chat", JSON.stringify(data));
+                if (res == undefined || res.objectId == null || res.createdAt == null) {
+                    alert("消息发送失败");
+                    return;
+                }
+                data.createdAt = res.createdAt;
+                self.chat.chatContent.push(self.getChatLine(data));
+                //发送后清空输入框
+                $(".div-textarea").html("");
+                //聊天框默认最底部
+                $(document).ready(function () {
+                    $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+                });
+            }
+        }
     }
 
     var viewModel = new viewModel();
@@ -218,6 +246,8 @@
             viewModel.sessionToken =  res.sessionToken;
             $.cookie('username', res.username, { expires: 7 });
             $.cookie('sessionToken', res.sessionToken, { expires: 7 });
+            var currentUser = request("get", "https://api.bmob.cn/1/classes/_User", "where={\"username\":\"" + res.username + "\"}").results[0];
+            viewModel.currentUser(currentUser);
             viewModel.screenFuc();
             viewModel.initFriends();
         };
@@ -258,21 +288,7 @@
     })();
 
     //      发送信息
-    $("#chat-fasong").click(function () {
-        var textContent = $(".div-textarea").html().replace(/[\n\r]/g, '<br>')
-        if (textContent != "") {
-            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
-                "<div class=\"author-name\"><small class=\"chat-date\">2017-12-02 14:26:58</small> </div> " +
-                "<div class=\"right\"> <div class=\"chat-message\"> " + textContent + " </div> " +
-                "<div class=\"chat-avatars\"><img src=\"img/icon01.png\" alt=\"头像\" /></div> </div> </div>");
-            //发送后清空输入框
-            $(".div-textarea").html("");
-            //聊天框默认最底部
-            $(document).ready(function () {
-                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
-            });
-        }
-    });
+    $("#chat-fasong").click();
 
     //      发送表情
     $("#chat-biaoqing").click(function () {
